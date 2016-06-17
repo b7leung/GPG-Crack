@@ -23,5 +23,6 @@ void aFill( char * password, int fillAmt);
 char * terminatePassword( char * passwordGuess );
 int attemptInput( char * password, char * filename);
 int validFileCheck( char * password, char * filename);
+int parseArgs( int argc, char * argv[] );
 
 #endif

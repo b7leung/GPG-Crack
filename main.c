@@ -14,13 +14,13 @@ int main( int argc, char * argv[] ){
   
   // checking if there were any invalid flags
   if( args & ERR_FLAG ){
-    fprintf( stderr, "Crack aborted." );
+    fprintf( stderr, "Crack aborted.\n" );
     return EXIT_FAILURE; 
 
   // checking if the number of arguments is correct
   } else if( ( ( args & S_FLAG ) && argc != S_ARG_NUM ) ||
   ( ( args == 0 ) && argc != ARG_NUM ) ){
-    fprintf( stderr, "Invalid number of arguments. Crack aborted." );
+    fprintf( stderr, "Invalid number of arguments. Crack aborted.\n" );
     return EXIT_FAILURE;
 
   // performing crack
