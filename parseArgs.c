@@ -13,6 +13,7 @@ int parseArgs( int argc, char * argv[] ){
   static struct option long_options[] =
   {
     { CHAR_S_LONG, no_argument, NULL, CHAR_S_FLAG },
+    { CHAR_A_LONG, no_argument, NULL, CHAR_A_FLAG },
     { 0, 0, 0, 0}
   };
 
@@ -22,6 +23,10 @@ int parseArgs( int argc, char * argv[] ){
 
       case CHAR_S_FLAG:
         args = args | S_FLAG;
+        break;
+
+      case CHAR_A_FLAG:
+        args = args | A_FLAG;
         break;
 
       case '?':

@@ -5,7 +5,7 @@
 
 #include "crackConstants.h"
 
-// returns 0 if password worked; 1 if it didn't
+// returns 1 if password worked; 0 if it didn't
 int attemptInput( char * password, char * filename ){
   
   int passwordValid = 1;
@@ -27,12 +27,23 @@ int attemptInput( char * password, char * filename ){
   // looking at output of attempt to see if password was valid
   FILE * decrypt_output = fopen( "decrypt_output", "r");
   char outputLine[BUFSIZ]; 
-
+  
+  int lineNum = 0;
   while( fgets( outputLine, BUFSIZ, decrypt_output ) != NULL ){
-    if( strstr( outputLine, "bad key" ) != NULL ){
+
+    //printf("Output line %d: %s\n", lineNum, outputLine); 
+
+    if( ( lineNum == 0 && strstr( outputLine, SUCCESS_MSG_LINE_0 ) == NULL ) ||
+    ( lineNum == 1 && strstr( outputLine, SUCCESS_MSG_LINE_1 ) == NULL ) ||
+    ( lineNum == 2 && strstr( outputLine, SUCCESS_MSG_LINE_2 ) == NULL ) ){
       passwordValid = 0;
       break;
     }
+    lineNum++;
+  }
+
+  if( lineNum != ( SUCCESS_MSG_LINES  ) ){
+    passwordValid = 0;
   }
       
   free(decryptCommand);

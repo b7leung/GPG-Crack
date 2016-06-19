@@ -1,6 +1,7 @@
 
 #include <string.h>
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "crackConstants.h"
 
 
@@ -11,7 +12,7 @@ int full( char * passwordGuess ){
   
   int full = 1;
 
-  int i;
+  unsigned int i;
   for( i = 0; i < strlen(passwordGuess); i++){
 
     if(passwordGuess[i]!= END_CHAR){

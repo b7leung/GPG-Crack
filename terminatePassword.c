@@ -7,11 +7,16 @@
 
 // terminates password by appending char * with null char
 
-char * terminatePassword( char * passwordGuess ){
+char * terminatePassword( char * passwordGuess, int guessLength){
 
-  char *terminatedPassword = malloc(sizeof(passwordGuess) + sizeof(char));
-  strcpy(terminatedPassword, passwordGuess);
-  terminatedPassword[strlen(passwordGuess)] = '\0';
+  char *terminatedPassword = malloc( guessLength + sizeof(char));
+  // copying passwordGuess into bigger array
+  int i;
+  for( i = 0; i < guessLength; i++ ){
+  //for( i = 0; i < 1; i++ ){
+    terminatedPassword[i] = passwordGuess[i];
+  }
+  terminatedPassword[guessLength] = '\0';
   
   return terminatedPassword;
 }
