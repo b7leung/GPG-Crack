@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
-
 #include "crackConstants.h"
+
+/*
+ * Method Name: parseArgs
+ * Description: Parses arguments for Crack
+ * Parameter(s): 
+ *   > int argc -- number of arguments
+ *   > char * argv[] --  array of arguments passed in
+ * Side Effect(s): None
+ * Return: int with appropriate flags ORed 
+ */
 
 int parseArgs( int argc, char * argv[] ){
   
@@ -17,7 +26,10 @@ int parseArgs( int argc, char * argv[] ){
     { 0, 0, 0, 0}
   };
 
-  while( ( getopt_result = getopt_long( argc, argv, OPTSTRING, long_options, &optionindex) )!= -1 ){
+  // continues scanning arguments until there aren't any left,
+  // flagging the appropriate bits for the corresponding flag
+  while( ( getopt_result = getopt_long( argc, argv, OPTSTRING,
+  long_options, &optionindex) )!= -1 ){
 
     switch(getopt_result){
 

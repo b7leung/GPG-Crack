@@ -1,19 +1,25 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "crackConstants.h"
 
-// terminates password by appending char * with null char
+/*
+ * Method Name: terminatePassword
+ * Description: terminates password by appending char * with null char
+ * Parameter(s):
+ *   > char * passwordGuess -- array of chars to null terminate
+ *   > int guessLength -- length of array of chars
+ * Side Effect(s): terminated char is malloc'd
+ * Return: terminated string
+ */
 
 char * terminatePassword( char * passwordGuess, int guessLength){
 
   char *terminatedPassword = malloc( guessLength + sizeof(char));
   // copying passwordGuess into bigger array
+
   int i;
   for( i = 0; i < guessLength; i++ ){
-  //for( i = 0; i < 1; i++ ){
     terminatedPassword[i] = passwordGuess[i];
   }
   terminatedPassword[guessLength] = '\0';
