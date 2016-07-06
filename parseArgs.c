@@ -10,7 +10,7 @@
  *   > int argc -- number of arguments
  *   > char * argv[] --  array of arguments passed in
  * Side Effect(s): None
- * Return: int with appropriate flags ORed 
+ * Return: int with appropriate flags
  */
 
 int parseArgs( int argc, char * argv[] ){
@@ -23,6 +23,7 @@ int parseArgs( int argc, char * argv[] ){
   {
     { CHAR_S_LONG, no_argument, NULL, CHAR_S_FLAG },
     { CHAR_A_LONG, no_argument, NULL, CHAR_A_FLAG },
+    { CHAR_H_LONG, no_argument, NULL, CHAR_H_FLAG },
     { 0, 0, 0, 0}
   };
 
@@ -39,6 +40,10 @@ int parseArgs( int argc, char * argv[] ){
 
       case CHAR_A_FLAG:
         args = args | A_FLAG;
+        break;
+
+      case CHAR_H_FLAG:
+        args = args | H_FLAG;
         break;
 
       case '?':

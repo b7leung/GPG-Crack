@@ -5,13 +5,17 @@
 #define CHAR_S_FLAG 's'
 #define CHAR_S_LONG "show_attempts"
 #define S_FLAG 0x1
-#define OPTSTRING "sa"
+#define OPTSTRING "hsa"
 
 #define CHAR_A_FLAG 'a'
 #define CHAR_A_LONG "alphabetic"
 #define A_FLAG 0x2
 
-#define ERR_FLAG 0x4
+#define CHAR_H_FLAG 'h'
+#define CHAR_H_LONG "help"
+#define H_FLAG 0x4
+
+#define ERR_FLAG 0x8
 
 // global constants
 #define DECRYPT_COMMAND_1 "gpg --passphrase \""
@@ -36,20 +40,21 @@ extern char END_CHAR;
 #define NANOSECOND 1000000000
 #define DOT_RATE 1
 
-#define USAGE 
+#define USAGE "USAGE: Crack decrypts symmetrically encrypted .gpg files with brute force.\
+\n\nFlags:\
+\n-a or -- alphabetic: Only attempt alphabetic passwords.\
+\n-s or --show_attempts: Print out current attempt (Program will run slightly slower).\
+\n-h or --help: Print out usage information.\n"
 
-struct passwordInfo {
-  char * password;
-  int passwordLength;
-};
+#define OPENERROR "FIle open error. Crack aborted. Use the --help flag for more information\n"
+#define ARGERROR "Argument error. Crack aborted. Use the --help flag for more information\n"
 
 // function prototypes
-struct passwordInfo passGen( struct passwordInfo password );
 int full( char * passwordGuess );
-void aFill( char * password, int fillAmt);
 char * terminatePassword( char * passwordGuess, int guessLength);
 int attemptInput( char * password, char * filename);
 int validFileCheck( char * password, char * filename);
 int parseArgs( int argc, char * argv[] );
+char * passGen( char * password );
 
 #endif

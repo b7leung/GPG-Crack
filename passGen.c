@@ -14,40 +14,45 @@
  * Return: The generated password.
  */
 
-struct passwordInfo passGen( struct passwordInfo password ){
+char * passGen( char * password ){
   
-  char * passwordGuess = password.password;
-  char * terminated;
+  //char * passwordGuess = password.password;
   // if the first letter is not z, keep on incrementing
-  if( passwordGuess[0] != END_CHAR ){
+  if( password[0] != END_CHAR ){
 
-    passwordGuess[0]++;
+    password[0]++;
 
   }else{
 
     // String becomes larger by 1 and 'a'-filled if string was filled with 'z's. 
-    if(full(terminated = terminatePassword(passwordGuess, password.passwordLength))){
-      char * passBuffer = malloc(sizeof(passwordGuess) + sizeof(char));
-      aFill( passBuffer, ++password.passwordLength ); 
-      free(passwordGuess);
-      passwordGuess = passBuffer;
+    if(full(password)){
+      int newPassLength = strlen(password) + 1; 
+      char * tmp = realloc( password, newPassLength + sizeof(char) );
+      if(tmp!=NULL){
+        password = tmp;
+      }
+      int i;
+      for( i = 0; i < newPassLength; i++ ){
+        password[i] = START_CHAR;
+      }
+      password[newPassLength] = '\0';
 
     }else{
     // If string not filled with 'z's, increment the biggest possible non-z char
     // and reset the previous chars to 'a's
       
       int biggestCharIndex = 1;
-      while( passwordGuess[biggestCharIndex] == END_CHAR ){
+      while( password[biggestCharIndex] == END_CHAR ){
         biggestCharIndex++;
       }
-      passwordGuess[biggestCharIndex]++;
-      aFill( passwordGuess, biggestCharIndex );
+      password[biggestCharIndex]++;
+      int i;
+      for( i = 0; i < biggestCharIndex; i++){
+        password[i] = START_CHAR;
+      }
 
     }
-      free(terminated);
   }  
-
-  password.password = passwordGuess;
 
   return password;
 }

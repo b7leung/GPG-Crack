@@ -7,7 +7,7 @@ EXE = crack
 # Headers for the program.
 HEADERS = crackConstants.h
 # .c C source files.
-C_SRC = aFill.c attemptInput.c full.c main.c parseArgs.c passGen.c \
+C_SRC = attemptInput.c full.c main.c parseArgs.c passGen.c \
 terminatePassword.c validFileCheck.c 
 # .o object code source files.
 C_OBJS= $(C_SRC:.c=.o)
